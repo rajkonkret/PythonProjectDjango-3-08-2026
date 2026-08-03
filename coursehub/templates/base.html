@@ -1,0 +1,14 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}CorseHub{% endblock %}</title>
+</head>
+<body>
+<nav>
+    <a href="{% url 'courses:home' %}">Start</a>
+    <a href="{% url 'courses:course_list' %}">Kursy</a>
+</nav>
+</body>
+</html>
