@@ -7,5 +7,16 @@
 <body>
 <h1>Dostępne Kursy</h1>
 
+{% for course in courses %}
+    <article>
+        <h2>{{ course.title }}</h2>
+        <p>{{ course.description }}</p>
+        <p>{{ course.price }}</p>
+        <p>{{ course.trainer }}</p>
+    </article>
+{% empty %}
+    <p>Brak kursów.</p>
+{% endfor %}
+
 </body>
 </html>
