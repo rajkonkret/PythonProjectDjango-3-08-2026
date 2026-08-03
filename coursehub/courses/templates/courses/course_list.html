@@ -9,7 +9,7 @@
 
 {% for course in courses %}
     <article>
-        <h2>{{ course.title }}</h2>
+        <h2>{{ course.title|upper }}</h2>
         <p>{{ course.description }}</p>
         <p>{{ course.price }}</p>
         <p>{{ course.trainer }}</p>
