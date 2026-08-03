@@ -23,3 +23,7 @@ def course_list(request):
         "courses/course_list.html",
         {"courses": courses}
     )
+
+# {{ ... }} wartośc/wyrażenia
+# {% ... %} tag sterująca - komenda
+# {# ... #} komentarz w template
