@@ -1,0 +1,7 @@
+mkdir coursehub
+cd .\coursehub\
+# pip install Django==6.0.7
+# python -m django --version
+python .\manage.py runserver
+# python .\manage.py runserver 8080
+ http://127.0.0.1:8080/ - adres serwera -> http://localhost:8080/
