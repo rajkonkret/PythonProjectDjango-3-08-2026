@@ -24,7 +24,7 @@ Superuser created successfully.
 
 -----
 tworzenie aplikacji django
-# python manage startapp courses
+# python manage.py startapp courses
 
 ----- migracja po dodaniu modeli do nbazy danych
 
