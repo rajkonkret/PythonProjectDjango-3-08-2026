@@ -57,3 +57,12 @@ Course.objects.filter(active=False).update(active=True)
 
 delete:
 Course.objects.filter(pk=1).delete()
+
+# skłądanie wyników
+#Course.objects.filter(active=True).filter(price__lt=2000).order_by("price")
+
+# drugi trener
+# dodac 2 kursy
+# wyswietlic kursy tansze nzi 1800
+# posortowac po cenie
+# zmienic cene jedego kursu
