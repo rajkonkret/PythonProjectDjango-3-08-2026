@@ -16,6 +16,7 @@ class Course(models.Model):
     price = models.DecimalField(max_digits=10, decimal_places=2)
     start_date = models.DateField()
     active = models.BooleanField(default=True)
+    max_participiants = models.PositiveIntegerField(default=20)
 
     trainer = models.ForeignKey(
         Trainer,
