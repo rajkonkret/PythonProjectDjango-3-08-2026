@@ -40,7 +40,10 @@ dane w bazie danych
 python .\manage.py shell
 from courses.models import Trainer, Course
 trainer = Trainer.objects.create(first_name="Anna", last_name="Kowalska", email="anna@example.com",)
+trainer_radek = Trainer.objects.create(first_name="Radek", last_name="Kowalski", email="radek@example.com",)
 course = Course.objects.create(title="Django 6 i aplikacje webowe", description="Szkolenie z apliakcji webowych.", price=1890, start_date="2026-09-10", trainer=trainer,)
+course_python = Course.objects.create(title="Python 3 na start", description="Szkolenie zpodstaw pythona.", price=1799, start_date="2026-09-10", trainer=trainer_radek,)
+course_flask = Course.objects.create(title="Flask 3.1 i aplikacje webowe", description="Szkolenie z apliakcji webowych we flasku.", price=1499, start_date="2026-09-10", trainer=trainer_radek,)
 
 Course.objects.all()
 Course.objects.get(pk=1) # id=1 jeden element zwraca
@@ -63,6 +66,8 @@ Course.objects.filter(pk=1).delete()
 
 # drugi trener
 # dodac 2 kursy
-# wyswietlic kursy tansze nzi 1800
+# wyswietlic kursy tansze niz 1800
 # posortowac po cenie
+#  Course.objects.filter(price__lt=1800).order_by("price")
+# Course.objects.filter(price__lt=1800).order_by("-price") # malejąco
 # zmienic cene jedego kursu
