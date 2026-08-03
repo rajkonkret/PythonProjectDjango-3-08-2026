@@ -10,6 +10,7 @@ class Trainer(models.Model):
 
     def __str__(self) -> str:
         return f"{self.first_name} {self.last_name}"
+        # <Trainer: Anna Kowalska>
 
 
 class Course(models.Model):
