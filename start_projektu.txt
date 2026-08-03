@@ -41,3 +41,19 @@ python .\manage.py shell
 from courses.models import Trainer, Course
 trainer = Trainer.objects.create(first_name="Anna", last_name="Kowalska", email="anna@example.com",)
 course = Course.objects.create(title="Django 6 i aplikacje webowe", description="Szkolenie z apliakcji webowych.", price=1890, start_date="2026-09-10", trainer=trainer,)
+
+Course.objects.all()
+Course.objects.get(pk=1) # id=1 jeden element zwraca
+Course.objects.filter(active=True) # moze zwrócic wiele elementów QuerySet
+Course.objects.filter(price__gt=1500)
+Course.objects.filter(title__icontains="django")
+
+update:
+>>> course=Course.objects.get(pk=1)
+>>> course.price = 1990
+>>> course.save()
+
+Course.objects.filter(active=False).update(active=True)
+
+delete:
+Course.objects.filter(pk=1).delete()
