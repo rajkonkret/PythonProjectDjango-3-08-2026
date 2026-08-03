@@ -8,8 +8,8 @@ from .models import Course
 
 
 def home(request):
-    return HttpResponse("CourseHub - platforma szkoleniowa")
-
+    # return HttpResponse("CourseHub - platforma szkoleniowa")
+    return render(request, "courses/home.html")
 
 def about(request):
     return HttpResponse("Strona z kursami by Radek")
