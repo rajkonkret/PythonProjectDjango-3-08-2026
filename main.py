@@ -12,6 +12,7 @@ def print_hi(name):
 # Press the green button in the gutter to run the script.
 if __name__ == '__main__':
     print_hi('PyCharm')
+    print(0.1 + 0.7)  # 0.7999999999999999
 
 # See PyCharm help at https://www.jetbrains.com/help/pycharm/
 # C:\Users\CSComarch\PycharmProjects\PythonProjectDjango-3-08-2026\.venv\Scripts\python.exe C:\Users\CSComarch\PycharmProjects\PythonProjectDjango-3-08-2026\main.py
