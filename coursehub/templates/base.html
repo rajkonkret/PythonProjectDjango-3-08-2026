@@ -10,5 +10,9 @@
     <a href="{% url 'courses:home' %}">Start</a>
     <a href="{% url 'courses:course_list' %}">Kursy</a>
 </nav>
+
+<main>
+    {% block content %}{% endblock %}
+</main>
 </body>
 </html>
