@@ -21,3 +21,5 @@ class CourseAdmin(admin.ModelAdmin):
     search_fields = ("title", "description", "trainer__last_name")
 
     list_select_related = ("trainer",)  # ominiecie problemu N + 1
+
+    date_hierarchy = "start_date"  # kolejny krok - kalendarzyk
