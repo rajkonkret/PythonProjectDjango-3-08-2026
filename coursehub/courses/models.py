@@ -26,3 +26,7 @@ class Course(models.Model):
 # CASCADE, PROTECT, SET_NULL, RESTRICT
 # relacja 1:n
 # Trener 1 ----> N Course
+# python .\manage.py makemigrations
+# python .\manage.py migrate
+# Operations to perform:
+#  python .\manage.py showmigrations

@@ -25,3 +25,12 @@ Superuser created successfully.
 -----
 tworzenie aplikacji django
 # python manage startapp courses
+
+----- migracja po dodaniu modeli do nbazy danych
+
+# python .\manage.py makemigrations
+# python .\manage.py migrate
+# sprawdzenie
+ python .\manage.py showmigrations
+python .\manage.py sqlmigrate courses 0001
+----------
