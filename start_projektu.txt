@@ -40,3 +40,4 @@ dane w bazie danych
 python .\manage.py shell
 from courses.models import Trainer, Course
 trainer = Trainer.objects.create(first_name="Anna", last_name="Kowalska", email="anna@example.com",)
+course = Course.objects.create(title="Django 6 i aplikacje webowe", description="Szkolenie z apliakcji webowych.", price=1890, start_date="2026-09-10", trainer=trainer,)

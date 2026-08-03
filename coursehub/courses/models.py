@@ -8,6 +8,9 @@ class Trainer(models.Model):
     email = models.EmailField(unique=True)
     bio = models.TextField(blank=True)  # dla pól tekstowych preferujemy blank
 
+    def __str__(self) -> str:
+        return f"{self.first_name} {self.last_name}"
+
 
 class Course(models.Model):
     title = models.CharField(max_length=200)
