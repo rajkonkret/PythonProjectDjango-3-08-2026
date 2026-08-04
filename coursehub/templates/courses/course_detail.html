@@ -11,7 +11,12 @@
         <p>{{ course.trainer.last_name }}</p>
         <p>{{ course.start_date|date:"d.m.y" }}</p>
         <p><strong>Start:</strong> {{ course.start_date|date:"d.m.Y" }}</p>
-    </article>
+<form method="post" action="{% url 'courses:enroll_in_course' course.pk %}" class="inline">
+        {% csrf_token %}
+        <button type="submit">Zapisz się</button>
+</form>
+</article>
+
 
 
 {% endblock %}
