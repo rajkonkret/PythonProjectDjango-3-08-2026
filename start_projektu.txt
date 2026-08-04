@@ -90,3 +90,18 @@ gunicorn config.wsgi:application
 
 # sprawdzenie staticów
 http://127.0.0.1:8000/static/courses/style.css
+
+drf
+pip install djangorestframework
+po dodaniu w installed apps
+python manage.py check
++---------+------------------+-------------------+
+| Metoda  | Adres            | Operacja          |
++---------+------------------+-------------------+
+| GET     | /api/courses/    | lista kursów      |
+| POST    | /api/courses/    | utworzenie kursu  |
+| GET     | /api/courses/3/  | szczegóły kursu   |
+| PUT     | /api/courses/3/  | pełna edycja      |
+| PATCH   | /api/courses/3/  | częściowa edycja  |
+| DELETE  | /api/courses/3/  | usunięcie         |
++---------+------------------+-------------------+

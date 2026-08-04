@@ -21,10 +21,10 @@ from django.views.generic import TemplateView  # domyslna klasa widoku
 urlpatterns = [
     path('admin/', admin.site.urls),
     path("", include("courses.urls")),  # /
-    path(
-        "api/",
-        TemplateView.as_view(template_name="api_placeholder.html"),
-        name="api_placeholder"),
+    # path(
+    #     "api/",
+    #     TemplateView.as_view(template_name="api_placeholder.html"),
+    #     name="api_placeholder"),
     path("accounts/", include("django.contrib.auth.urls"))
 ]
 

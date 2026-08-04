@@ -1,4 +1,4 @@
-from django.urls import path
+from django.urls import path, include
 
 from . import views
 from .views import CourseListView
@@ -17,5 +17,13 @@ urlpatterns = [
     path("courses/new/", views.course_create, name="course_create"),
     path("courses/<int:pk>/enroll", views.enroll_in_course, name="enroll_in_course"),
     path("my-courses/", views.my_courses, name="my_courses"),
+path("api/", include("courses.api_urls")),
+    path(
+            "api-auth/",
+            include(
+                "rest_framework.urls",
+                namespace="rest_framework",
+            ),
+    ),
 ]
 # ctrl alt l - formatowanie wg PEP8
