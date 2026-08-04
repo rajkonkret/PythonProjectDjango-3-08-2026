@@ -3,6 +3,7 @@ from django.shortcuts import render, get_object_or_404, redirect
 
 # Create your views here.
 from django.http import HttpResponse
+from django.contrib import messages
 
 from .forms import CourseForm
 from .models import Course
@@ -52,6 +53,7 @@ def course_create(request):
     else:
         form = CourseForm()
 
+    mes
     return render(
         request,
         "courses/course_form.html",
