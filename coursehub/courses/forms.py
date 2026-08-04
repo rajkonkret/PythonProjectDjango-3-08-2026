@@ -29,6 +29,7 @@ class CourseForm(forms.ModelForm):
         title = self.cleaned_data['title'].strip()
         if len(title) < 3:
             raise forms.ValidationError("Tytuł musi mieć co najmniej 3 znaki")
+        return title
 
 
 class TrainerForm(forms.ModelForm):

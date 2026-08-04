@@ -47,15 +47,18 @@ def course_create(request):
     if request.method == 'POST':
         form = CourseForm(request.POST)
         print(request.POST.dict())
+        print(form.is_valid())
+        print(form.errors)
 
         if form.is_valid():
             course = form.save()
+            messages.success(request, 'Zmiany zapisane')
             return redirect(course)
 
     else:
         form = CourseForm()
+        messages.success(request, 'Problem')
 
-    messages.success(request, 'Zmiany zapisane')
     return render(
         request,
         "courses/course_form.html",
