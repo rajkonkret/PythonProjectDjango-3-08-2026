@@ -87,3 +87,6 @@ git restore --staged .\config\.env
 pip install whitenoise
 python manage.py collectstatic
 gunicorn config.wsgi:application
+
+# sprawdzenie staticów
+http://127.0.0.1:8000/static/courses/style.css
