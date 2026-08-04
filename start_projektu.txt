@@ -78,3 +78,6 @@ http://127.0.0.1:8000/accounts/login/
 # zmiana hasła admina:
 python manage.py changepassword admin
 python manage.py changepassword cscomarch
+
+#  pip freeze > requiremenets.txt
+pip install -r requiremenets.txt
