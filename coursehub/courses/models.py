@@ -30,7 +30,7 @@ class Course(models.Model):
     )
 
     def get_absolute_url(self):
-        return reverse("course_detail", kwargs={"pk": self.pk})
+        return reverse("courses:course_detail", kwargs={"pk": self.pk})
 # CASCADE, PROTECT, SET_NULL, RESTRICT
 # relacja 1:n
 # Trener 1 ----> N Course
