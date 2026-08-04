@@ -1,0 +1,89 @@
+mkdir coursehub
+cd .\coursehub\
+# pip install Django==6.0.7
+# python -m django --version
+django-admin startproject config . - tworzenie projektu
+python .\manage.py runserver
+# python .\manage.py runserver 8080
+ http://127.0.0.1:8080/ - adres serwera -> http://localhost:8080/
+ # python manage.py shell - projekt django z uruchomionym pythonem
+ python manage.py migrate - migracja danych do bazy danych
+python manage.py test - uruchomienie testow jednostkowych
+------
+# python .\manage.py createsuperuser - tworzenie admina
+Username (leave blank to use 'cscomarch'):
+Email address: raj@raj.pll
+Password:
+Password (again):
+This password is too short. It must contain at least 8 characters.
+This password is too common.
+Bypass password validation and create user anyway? [y/N]: y
+Superuser created successfully.
+# http://127.0.0.1:8000/admin
+--------
+
+-----
+tworzenie aplikacji django
+# python manage.py startapp courses
+
+----- migracja po dodaniu modeli do nbazy danych
+
+# python .\manage.py makemigrations
+# python .\manage.py migrate
+# sprawdzenie
+ python .\manage.py showmigrations
+python .\manage.py sqlmigrate courses 0001
+----------
+
+-----
+dane w bazie danych
+python .\manage.py shell
+from courses.models import Trainer, Course
+trainer = Trainer.objects.create(first_name="Anna", last_name="Kowalska", email="anna@example.com",)
+trainer_radek = Trainer.objects.create(first_name="Radek", last_name="Kowalski", email="radek@example.com",)
+course = Course.objects.create(title="Django 6 i aplikacje webowe", description="Szkolenie z apliakcji webowych.", price=1890, start_date="2026-09-10", trainer=trainer,)
+course_python = Course.objects.create(title="Python 3 na start", description="Szkolenie zpodstaw pythona.", price=1799, start_date="2026-09-10", trainer=trainer_radek,)
+course_flask = Course.objects.create(title="Flask 3.1 i aplikacje webowe", description="Szkolenie z apliakcji webowych we flasku.", price=1499, start_date="2026-09-10", trainer=trainer_radek,)
+
+Course.objects.all()
+Course.objects.get(pk=1) # id=1 jeden element zwraca
+Course.objects.filter(active=True) # moze zwrócic wiele elementów QuerySet
+Course.objects.filter(price__gt=1500)
+Course.objects.filter(title__icontains="django")
+
+update:
+>>> course=Course.objects.get(pk=1)
+>>> course.price = 1990
+>>> course.save()
+
+Course.objects.filter(active=False).update(active=True)
+
+delete:
+Course.objects.filter(pk=1).delete()
+
+# skłądanie wyników
+#Course.objects.filter(active=True).filter(price__lt=2000).order_by("price")
+
+# drugi trener
+# dodac 2 kursy
+# wyswietlic kursy tansze niz 1800
+# posortowac po cenie
+#  Course.objects.filter(price__lt=1800).order_by("price")
+# Course.objects.filter(price__lt=1800).order_by("-price") # malejąco
+# zmienic cene jedego kursu
+
+# formularz logowania
+http://127.0.0.1:8000/accounts/login/
+
+# zmiana hasła admina:
+python manage.py changepassword admin
+python manage.py changepassword cscomarch
+
+#  pip freeze > requiremenets.txt
+pip install -r requiremenets.txt
+
+git restore --staged .\config\.env
+
+pip install whitenoise
+python manage.py collectstatic
+gunicorn config.wsgi:application

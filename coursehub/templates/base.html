@@ -1,0 +1,35 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}CorseHub{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'courses/style.css' %}">
+</head>
+<body>
+<nav class="site-header">
+    <a class="brand" href="{% url 'courses:home' %}">Start</a>
+    {% if user.is_authenticated %}
+        <a href="{% url 'courses:course_list' %}">Kursy</a>
+        <a href="{% url 'api_placeholder' %}">API</a>
+        <a href="{% url 'courses:course_create' %}">Dodaj Kurs</a>
+        <a href="{% url 'courses:my_courses' %}">Moje Kursy</a>
+        <form action="{% url 'logout' %}" method="post" class="inline">
+            {% csrf_token %}
+            <button type="submit">Wyloguj ({{ user.username }})</button>
+        </form>
+    {% else %}
+        <a href="{% url 'login' %}">Zaloguj się</a>
+    {% endif %}
+</nav>
+
+<main class="container">
+    {% if messages %}
+        {% for message in messages %}
+            <div class="message">{{ message }}</div>
+        {% endfor %}
+    {% endif %}
+    {% block content %}{% endblock %}
+</main>
+</body>
+</html>

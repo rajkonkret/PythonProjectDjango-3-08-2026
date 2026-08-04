@@ -1,0 +1,126 @@
+from django.contrib.auth.decorators import login_required
+from django.db import transaction
+from django.db.models import Model, Count
+from django.shortcuts import render, get_object_or_404, redirect
+
+# Create your views here.
+from django.http import HttpResponse
+from django.contrib import messages
+from django.views.generic import ListView
+
+from .forms import CourseForm
+from .models import Course, Enrollment
+
+
+def home(request):
+    # return HttpResponse("CourseHub - platforma szkoleniowa")
+    return render(request, "courses/home.html")
+
+
+def about(request):
+    return HttpResponse("Strona z kursami by Radek")
+
+
+def course_list(request):
+    courses = Course.objects.filter(active=True)
+
+    return render(
+        request,
+        "courses/course_list.html",
+        {"courses": courses}
+    )
+
+
+# {{ ... }} wartośc/wyrażenia
+# {% ... %} tag sterująca - komenda
+# {# ... #} komentarz w template
+def course_detail(request, pk):
+    # course = Course.objects.filter(pk=pk)
+    # course = Course.objects.get(pk=pk)
+    course = get_object_or_404(Course, pk=pk)
+
+    return render(
+        request,
+        "courses/course_detail.html",
+        {"course": course}
+    )
+
+
+def course_create(request):
+    if request.method == 'POST':
+        form = CourseForm(request.POST)
+        print(request.POST.dict())
+        print(form.is_valid())
+        print(form.errors)
+
+        if form.is_valid():
+            course = form.save()
+            messages.success(request, 'Zmiany zapisane')
+            return redirect(course)
+
+    else:
+        form = CourseForm()
+        messages.success(request, 'Problem')
+
+    return render(
+        request,
+        "courses/course_form.html",
+        {"form": form},
+    )
+
+# blokowanie rekordu  -> "select_for_update
+# dodac sprawdzanie czy sa wolne miejsca
+@login_required
+@transaction.atomic
+def enroll_in_course(request, pk):
+    if request.method == "POST":
+        course = get_object_or_404(Course, pk=pk)
+
+        enrollment, created = Enrollment.objects.get_or_create(
+            user=request.user, course=course
+        )
+
+        if created:
+
+            messages.success(
+                request,
+                f"Pomyślnie zapisałeś się na kurs: {course.title}"
+            )
+        else:
+            messages.warning(
+                request,
+                "Jestes juz zapisany na ten kurs."
+            )
+        redirect(course)  # działa dzięki get_absolute_url
+
+    return redirect("courses:course_list")
+
+
+@login_required
+def my_courses(request):
+    # enrollments = Course.objects.all()
+    # enrollments = Course.objects.all().select_related("trainer")
+    enrollments = (
+        Enrollment.objects.filter(user=request.user)
+        .select_related("course", "course__trainer")
+    )
+    # INNER JOIN
+
+    return render(
+        request,
+        "courses/my_courses.html",
+        {"enrollments": enrollments}
+    )
+
+class CourseListView(ListView):
+    model = Course
+    template_name = "courses/course_list.html"
+    context_object_name = "courses"
+    paginate_by = 10
+
+    def get_queryset(self):
+        return (
+            Course.objects.filter(active=True)
+            .select_related("trainer")
+            .annotate(enrollment_count=Count("enrollments"))
+        )

@@ -1,0 +1,19 @@
+* { box-sizing: border-box; }
+body { font-family: system-ui, sans-serif; margin: 0; line-height: 1.5; background: #f5f7fa; color: #1f2937; }
+a {
+    color: #0d6efd;
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.2s ease;
+}
+
+.site-header { display: flex; gap: 2rem; align-items: center; padding: 1rem 2rem; background: white; border-bottom: 1px solid #ddd; }
+.site-header nav { display: flex; gap: 1rem; align-items: center; flex-wrap: wrap; }
+.brand { font-weight: 700; font-size: 1.25rem; text-decoration: none; }
+.container { max-width: 900px; margin: 2rem auto; padding: 0 1rem; }
+.card { background: white; padding: 1.25rem; border-radius: .6rem; margin-bottom: 1rem; border: 1px solid #e5e7eb; }
+.form input, .form textarea, .form select { width: 100%; padding: .55rem; }
+button, .button { display: inline-block; padding: .55rem .85rem; border: 0; border-radius: .4rem; background: #175cd3; color: white; text-decoration: none; cursor: pointer; }
+.inline { display: inline; }
+.message { padding: .7rem; background: #e8f1ff; margin-bottom: 1rem; border-radius: .4rem; }
+.pagination { display: flex; justify-content: space-between; margin: 1.5rem 0; }
