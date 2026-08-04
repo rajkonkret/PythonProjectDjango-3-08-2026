@@ -6,7 +6,7 @@ from django.http import HttpResponse
 from django.contrib import messages
 
 from .forms import CourseForm
-from .models import Course
+from .models import Course, Enrollment
 
 
 def home(request):
@@ -64,3 +64,23 @@ def course_create(request):
         "courses/course_form.html",
         {"form": form},
     )
+
+
+def enroll_in_course(request, pk):
+    if request.method == "POST":
+        course = get_object_or_404(Course, pk=pk)
+
+        enrollment, created = Enrollment.objects.get_or_create(
+            user=request.user, course=course
+        )
+
+    if created:
+
+        messages.success(
+            request,
+            f"Pomyślnie zapisałeś się na kurs: {course.title}"
+        )
+    else:
+        redirect(course) # dziąl dzieki get_absolute_url
+
+    return redirect("courses:course_list")
