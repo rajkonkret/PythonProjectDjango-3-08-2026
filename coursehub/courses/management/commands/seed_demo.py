@@ -35,7 +35,7 @@ class Command(BaseCommand):
                     "price": price,
                     "start_date": date.today() + timedelta(days=days),
                     "trainer": trainer,
-                    "max_participants": 12,
+                    "max_participiants": 12,
                 },
             )
         self.stdout.write(self.style.SUCCESS("Dane demonstracyjne są gotowe."))
