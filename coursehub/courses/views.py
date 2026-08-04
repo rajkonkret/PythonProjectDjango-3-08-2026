@@ -86,6 +86,6 @@ def enroll_in_course(request, pk):
                 request,
                 "Jestes juz zapisany na ten kurs."
             )
-        redirect(course)  # dziąl dzieki get_absolute_url
+        redirect(course)  # działa dzięki get_absolute_url
 
     return redirect("courses:course_list")
