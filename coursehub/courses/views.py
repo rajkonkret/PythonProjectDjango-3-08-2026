@@ -74,13 +74,17 @@ def enroll_in_course(request, pk):
             user=request.user, course=course
         )
 
-    if created:
+        if created:
 
-        messages.success(
-            request,
-            f"Pomyślnie zapisałeś się na kurs: {course.title}"
-        )
-    else:
+            messages.success(
+                request,
+                f"Pomyślnie zapisałeś się na kurs: {course.title}"
+            )
+        else:
+            messages.warning(
+                request,
+                "Jestes juz zapisany na ten kurs."
+            )
         redirect(course) # dziąl dzieki get_absolute_url
 
     return redirect("courses:course_list")
