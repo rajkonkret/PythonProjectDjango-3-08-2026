@@ -1,4 +1,5 @@
 from django.db import models
+from django.urls import reverse
 
 
 # Create your models here.
@@ -27,6 +28,9 @@ class Course(models.Model):
         on_delete=models.PROTECT,  # nie mozemy skasowac trenera jesli istnieje przypisany do niego kurs
         related_name="courses"
     )
+
+    def get_absolute_url(self):
+        return reverse("course_detail", kwargs={"pk": self.pk})
 # CASCADE, PROTECT, SET_NULL, RESTRICT
 # relacja 1:n
 # Trener 1 ----> N Course
