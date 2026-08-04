@@ -13,6 +13,11 @@
 </nav>
 
 <main>
+    {% if messages %}
+        {% for message in messages %}
+            <div>{{ message }}</div>
+        {% endfor %}
+    {% endif %}
     {% block content %}{% endblock %}
 </main>
 </body>
