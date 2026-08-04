@@ -53,7 +53,7 @@ def course_create(request):
     else:
         form = CourseForm()
 
-    mes
+    messages.success(request, 'Zmiany zapisane')
     return render(
         request,
         "courses/course_form.html",
