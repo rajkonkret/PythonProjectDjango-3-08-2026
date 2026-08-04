@@ -23,3 +23,15 @@ class Courseform(forms.ModelForm):
             "start_date": forms.DateInput(attrs={"type": "date"}),
             "descripion": forms.Textarea(attrs={"rows": 5})
         }
+
+        def clean_title(self):
+            """Przykład walidacji pojedynczego pola."""
+            title = self.cleaned_data['title'].string()
+            if len(title) < 3:
+                raise forms.ValidationError("Tytuł musi mieć co najmniej 3 znaki")
+
+
+class TrainerForm(forms.ModelForm):
+    class Meta:
+        model = Trainer
+        fields = ['first_name', "last_name", "email", "bio"]
