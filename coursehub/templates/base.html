@@ -13,6 +13,7 @@
         <a href="{% url 'courses:course_list' %}">Kursy</a>
         <a href="{% url 'api_placeholder' %}">API</a>
         <a href="{% url 'courses:course_create' %}">Dodaj Kurs</a>
+        <a href="{% url 'courses:my_courses' %}">Moje Kursy</a>
         <form action="{% url 'logout' %}" method="post" class="inline">
             {% csrf_token %}
             <button type="submit">Wyloguj ({{ user.username }})</button>

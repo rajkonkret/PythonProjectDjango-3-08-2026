@@ -1,4 +1,5 @@
 from django.contrib.auth.decorators import login_required
+from django.db import transaction
 from django.db.models import Model
 from django.shortcuts import render, get_object_or_404, redirect
 
@@ -66,8 +67,9 @@ def course_create(request):
         {"form": form},
     )
 
-
+# blokowanie rekordu  -> "select_for_update
 @login_required
+@transaction.atomic
 def enroll_in_course(request, pk):
     if request.method == "POST":
         course = get_object_or_404(Course, pk=pk)
@@ -98,11 +100,11 @@ def my_courses(request):
     # enrollments = Course.objects.all().select_related("trainer")
     enrollments = (
         Enrollment.objects.filter(user=request.user)
-        .select_related("course", "course_trainer")
+        .select_related("course", "course__trainer")
     )
     # INNER JOIN
 
-    return request(
+    return render(
         request,
         "courses/my_courses.html",
         {"enrollments": enrollments}
