@@ -1,6 +1,8 @@
 from django.db import models
 from django.urls import reverse
 
+from django.conf import settings
+
 
 # Create your models here.
 class Trainer(models.Model):
@@ -38,6 +40,8 @@ class Course(models.Model):
 
     def __str__(self) -> str:
         return self.title
+
+
 # CASCADE, PROTECT, SET_NULL, RESTRICT
 # relacja 1:n
 # Trener 1 ----> N Course
@@ -45,3 +49,32 @@ class Course(models.Model):
 # python .\manage.py migrate
 # Operations to perform:
 #  python .\manage.py showmigrations
+
+class Enrollment(models.Model):
+    """Zapis zalogowanych użytkownika na kurs."""
+
+    user = models.ForeignKey(
+        settings.AUTH_USER_MODEL,
+        on_delete=models.CASCADE,
+        related_name="enrollments",
+    )
+
+    course = models.ForeignKey(
+        Course,
+        on_delete=models.CASCADE,
+        related_name="enrollments",
+    )
+
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        ordering = ["-created_at"]
+        constraints = [
+            models.UniqueConstraint(
+                fields=["user", "course"],
+                name="unique_user_course",
+            )
+        ]
+
+    def __str__(self) -> str:
+        return f"{self.user} zapisany na {self.course.title}"
