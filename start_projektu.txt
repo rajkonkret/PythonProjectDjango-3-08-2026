@@ -74,3 +74,6 @@ Course.objects.filter(pk=1).delete()
 
 # formularz logowania
 http://127.0.0.1:8000/accounts/login/
+
+# zmiana hasła admina:
+python manage.py changepassword admin
