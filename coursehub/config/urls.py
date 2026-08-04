@@ -25,4 +25,6 @@ urlpatterns = [
         "api/",
         TemplateView.as_view(template_name="api_placeholder.html"),
         name="api_placeholder"),
+    path("accounts/", include("django.contrib.auth.urls"))
 ]
+
