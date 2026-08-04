@@ -78,3 +78,6 @@ class Enrollment(models.Model):
 
     def __str__(self) -> str:
         return f"{self.user} zapisany na {self.course.title}"
+# python .\manage.py makemigrations
+# python .\manage.py showmigrations
+# python .\manage.py migrate
