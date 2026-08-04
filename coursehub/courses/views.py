@@ -1,3 +1,4 @@
+from django.contrib.auth.decorators import login_required
 from django.db.models import Model
 from django.shortcuts import render, get_object_or_404, redirect
 
@@ -65,7 +66,7 @@ def course_create(request):
         {"form": form},
     )
 
-
+@login_required
 def enroll_in_course(request, pk):
     if request.method == "POST":
         course = get_object_or_404(Course, pk=pk)
