@@ -16,8 +16,13 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from django.views.generic import TemplateView  # domyslna klasa widoku
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path("", include("courses.urls"))  # /
+    path("", include("courses.urls")),  # /
+    path(
+        "api/",
+        TemplateView.as_view(template_name="api_placeholder.html"),
+        name="api_placeholder"),
 ]
