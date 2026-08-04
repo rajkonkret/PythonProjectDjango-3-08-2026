@@ -1,11 +1,12 @@
 from django.contrib.auth.decorators import login_required
 from django.db import transaction
-from django.db.models import Model
+from django.db.models import Model, Count
 from django.shortcuts import render, get_object_or_404, redirect
 
 # Create your views here.
 from django.http import HttpResponse
 from django.contrib import messages
+from django.views.generic import ListView
 
 from .forms import CourseForm
 from .models import Course, Enrollment
@@ -68,6 +69,7 @@ def course_create(request):
     )
 
 # blokowanie rekordu  -> "select_for_update
+# dodac sprawdzanie czy sa wolne miejsca
 @login_required
 @transaction.atomic
 def enroll_in_course(request, pk):
@@ -109,3 +111,16 @@ def my_courses(request):
         "courses/my_courses.html",
         {"enrollments": enrollments}
     )
+
+class CourseListView(ListView):
+    model = Course
+    template_name = "courses/course_list.html"
+    context_object_name = "courses"
+    paginate_by = 10
+
+    def get_queryset(self):
+        return (
+            Course.objects.filter(active=True)
+            .select_related("trainer")
+            .annotate(enrollment_count=Count("enrollments"))
+        )
