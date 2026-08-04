@@ -14,6 +14,9 @@
         <p>{{ course.trainer.last_name }}</p>
         <p>{{ course.start_date|date:"d.m.y" }}</p>
         <p><strong>Start:</strong> {{ course.start_date|date:"d.m.Y" }}</p>
+        <p>
+            <a class="button" href="{{ course.get_absolute_url }}">Szczegóły kursu</a>
+        </p>
     </article>
 {% empty %}
     <p>Brak kursów.</p>

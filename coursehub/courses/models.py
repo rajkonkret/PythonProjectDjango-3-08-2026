@@ -29,6 +29,7 @@ class Course(models.Model):
         related_name="courses"
     )
 
+    # view on site  w admin
     def get_absolute_url(self):
         return reverse("courses:course_detail", kwargs={"pk": self.pk})
 # CASCADE, PROTECT, SET_NULL, RESTRICT
