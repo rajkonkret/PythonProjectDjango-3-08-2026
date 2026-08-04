@@ -66,6 +66,7 @@ def course_create(request):
         {"form": form},
     )
 
+
 @login_required
 def enroll_in_course(request, pk):
     if request.method == "POST":
@@ -89,3 +90,20 @@ def enroll_in_course(request, pk):
         redirect(course)  # działa dzięki get_absolute_url
 
     return redirect("courses:course_list")
+
+
+@login_required
+def my_courses(request):
+    # enrollments = Course.objects.all()
+    # enrollments = Course.objects.all().select_related("trainer")
+    enrollments = (
+        Enrollment.objects.filter(user=request.user)
+        .select_related("course", "course_trainer")
+    )
+    # INNER JOIN
+
+    return request(
+        request,
+        "courses/my_courses.html",
+        {"enrollments": enrollments}
+    )
