@@ -79,8 +79,8 @@ http://127.0.0.1:8000/accounts/login/
 python manage.py changepassword admin
 python manage.py changepassword cscomarch
 
-#  pip freeze > requiremenets.txt
-pip install -r requiremenets.txt
+#  pip freeze > requirements.txt
+pip install -r requirements.txt
 
 git restore --staged .\config\.env
 
