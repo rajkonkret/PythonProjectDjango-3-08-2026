@@ -21,7 +21,7 @@ class CourseForm(forms.ModelForm):
 
         widgets = {
             "start_date": forms.DateInput(attrs={"type": "date"}),
-            "descripion": forms.Textarea(attrs={"rows": 5})
+            "description": forms.Textarea(attrs={"rows": 5})
         }
 
     def clean_title(self):

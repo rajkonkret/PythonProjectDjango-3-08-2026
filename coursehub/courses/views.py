@@ -46,6 +46,8 @@ def course_detail(request, pk):
 def course_create(request):
     if request.method == 'POST':
         form = CourseForm(request.POST)
+        print(request.POST.dict())
+
         if form.is_valid():
             course = form.save()
             return redirect(course)
