@@ -35,6 +35,9 @@ class Course(models.Model):
 
     class Meta:
         ordering = ['start_date', 'title']
+
+    def __str__(self) -> str:
+        return self.title
 # CASCADE, PROTECT, SET_NULL, RESTRICT
 # relacja 1:n
 # Trener 1 ----> N Course
