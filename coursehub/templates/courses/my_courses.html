@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% block content %}
+<h1>Moje kursy</h1>
+{% for enrollment in enrollments %}
+<div class="card">
+    <h2><a href="{% url 'courses:course_detail' enrollment.course.pk %}">{{ enrollment.course.title }}</a></h2>
+    <p>Trener: {{ enrollment.course.trainer }}</p>
+    <p>Zapis: {{ enrollment.created_at|date:"d.m.Y H:i" }}</p>
+</div>
+{% empty %}
+<p>Nie jesteś jeszcze zapisany na żaden kurs.</p>
+{% endfor %}
+{% endblock %}
