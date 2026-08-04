@@ -1,9 +1,10 @@
 from django.db.models import Model
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
 
 # Create your views here.
 from django.http import HttpResponse
 
+from .forms import CourseForm
 from .models import Course
 
 
@@ -38,4 +39,21 @@ def course_detail(request, pk):
         request,
         "courses/course_detail.html",
         {"course": course}
+    )
+
+
+def course_create(request):
+    if request.method == 'POST':
+        form = CourseForm(request.POST)
+        if form.is_valid():
+            course = form.save()
+            return redirect(course)
+
+    else:
+        form = CourseForm()
+
+    return render(
+        request,
+        "courses/course_form.html",
+        {"form": form},
     )

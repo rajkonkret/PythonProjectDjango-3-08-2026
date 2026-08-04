@@ -2,7 +2,7 @@ from django import forms
 from .models import Course, Trainer
 
 
-class Courseform(forms.ModelForm):
+class CourseForm(forms.ModelForm):
     """
     MoodelForm automatycznie wykorzystuje typy i walidacje modelu Course.
     """
@@ -24,11 +24,11 @@ class Courseform(forms.ModelForm):
             "descripion": forms.Textarea(attrs={"rows": 5})
         }
 
-        def clean_title(self):
-            """Przykład walidacji pojedynczego pola."""
-            title = self.cleaned_data['title'].string()
-            if len(title) < 3:
-                raise forms.ValidationError("Tytuł musi mieć co najmniej 3 znaki")
+    def clean_title(self):
+        """Przykład walidacji pojedynczego pola."""
+        title = self.cleaned_data['title'].string()
+        if len(title) < 3:
+            raise forms.ValidationError("Tytuł musi mieć co najmniej 3 znaki")
 
 
 class TrainerForm(forms.ModelForm):
