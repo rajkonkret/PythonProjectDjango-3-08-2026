@@ -32,6 +32,9 @@ class Course(models.Model):
     # view on site  w admin
     def get_absolute_url(self):
         return reverse("courses:course_detail", kwargs={"pk": self.pk})
+
+    class Meta:
+        ordering = ['start_date', 'title']
 # CASCADE, PROTECT, SET_NULL, RESTRICT
 # relacja 1:n
 # Trener 1 ----> N Course
