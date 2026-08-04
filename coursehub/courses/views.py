@@ -27,3 +27,5 @@ def course_list(request):
 # {{ ... }} wartośc/wyrażenia
 # {% ... %} tag sterująca - komenda
 # {# ... #} komentarz w template
+def course_detail():
+    return None
