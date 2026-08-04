@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+
+{% block title %}CourseHub - start{% endblock %}
+
+{% block content %}
+<h1>CourseHub</h1>
+<p>Projekt szkoleniowy pokazujący typowy przepływ pracy z Django 6.</p>
+<p><a class="button" href="{% url 'courses:course_list' %}">zobacz kursy</a></p>
+{% endblock %}
