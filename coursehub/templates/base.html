@@ -16,7 +16,7 @@
 <main>
     {% if messages %}
         {% for message in messages %}
-            <div>{{ message }}</div>
+            <div class="message">{{ message }}</div>
         {% endfor %}
     {% endif %}
     {% block content %}{% endblock %}
