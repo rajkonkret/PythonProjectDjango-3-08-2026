@@ -71,3 +71,6 @@ Course.objects.filter(pk=1).delete()
 #  Course.objects.filter(price__lt=1800).order_by("price")
 # Course.objects.filter(price__lt=1800).order_by("-price") # malejąco
 # zmienic cene jedego kursu
+
+# formularz logowania
+http://127.0.0.1:8000/accounts/login/
