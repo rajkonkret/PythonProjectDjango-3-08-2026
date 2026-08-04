@@ -81,3 +81,5 @@ python manage.py changepassword cscomarch
 
 #  pip freeze > requiremenets.txt
 pip install -r requiremenets.txt
+
+git restore --staged .\config\.env
