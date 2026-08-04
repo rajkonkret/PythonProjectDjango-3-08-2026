@@ -26,7 +26,7 @@ class CourseForm(forms.ModelForm):
 
     def clean_title(self):
         """Przykład walidacji pojedynczego pola."""
-        title = self.cleaned_data['title'].string()
+        title = self.cleaned_data['title'].strip()
         if len(title) < 3:
             raise forms.ValidationError("Tytuł musi mieć co najmniej 3 znaki")
 
