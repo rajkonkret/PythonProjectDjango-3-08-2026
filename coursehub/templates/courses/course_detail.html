@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block title %} {{course.title }} {% endblock %}
+
+{% block content %}
+<article class="card">
+        <h2>{{ course.title|upper }}</h2>
+        <p>{{ course.description|truncatewords:20 }}</p>
+        <p><strong>Cena:</strong> {{ course.price }}</p>
+        <p><strong>Trener:</strong> {{ course.trainer }}</p>
+        <p>{{ course.trainer.last_name }}</p>
+        <p>{{ course.start_date|date:"d.m.y" }}</p>
+        <p><strong>Start:</strong> {{ course.start_date|date:"d.m.Y" }}</p>
+    </article>
+
+
+{% endblock %}
